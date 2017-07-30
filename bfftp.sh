@@ -19,16 +19,37 @@ function_colors() {
 	reset="${escape}[0m";
 }
 
+function_banner(){
+
+cat << EOF
+
+
+88            ad88    ad88
+88           d8V     d8V     ,d
+88           88      88      88
+88,dPPYba, x0BRUTE x0FORCE x0FTPxz 8b,dPPYba,
+88P'    "8a  88      88      88    88P     V8a
+88       d8  88      88      88    88       d8
+88b,   ,a8V  88      88      88,   88b,   ,a8n
+8YVYbbd8VN   88      88      VY888 88ddYbbdPV
+                                   88
+	Author: João Lucas         88
+
+EOF
+
+}
 
 
 function_usage() {
 	cat << EOF
-	Simple script to brute force in protocol ftp
 
-	Usage: $0 -t <host|ip> -w <wordlist> -u <user>
-	Example: $0 -t 192.168.0.1 -w /home/user/rockyou.txt -u admin
+Simple script to brute force in protocol ftp
 
-	Author: João Lucas <joaolucas@linuxmail.org>
+Usage: $0 -t <host|ip> -w <wordlist> -u <user>
+Example: $0 -t 192.168.0.1 -w /home/user/rockyou.txt -u admin
+
+Author: João Lucas <joaolucas@linuxmail.org>
+
 EOF
 
 exit 1;
@@ -69,25 +90,9 @@ done
 [ $user ] || function_usage;
 
 function_colors;
+function_banner;
 
-cat << EOF
-
-
-88            ad88    ad88
-88           d8V     d8V     ,d
-88           88      88      88
-88,dPPYba, x0BRUTE x0FORCE x0FTPxz 8b,dPPYba,
-88P'    "8a  88      88      88    88P     V8a
-88       d8  88      88      88    88       d8
-88b,   ,a8V  88      88      88,   88b,   ,a8n
-8YVYbbd8VN   88      88      VY888 88ddYbbdPV
-                                   88
-	Author: João Lucas         88
-
-EOF
-
-
-echo -e "\n [${blue}  TARGET  ${white}]: $host\n [${blue}   USER   ${white}]: $user\n [${blue} WORDLIST ${white}]: `wc -l $wordlist | awk '{print $1}'` \n"
+echo -e "\n x0[${blue}  TARGET  ${white}]: $host\n x0[${blue}   USER   ${white}]: $user\n x0[${blue} WORDLIST ${white}]: `wc -l $wordlist | awk '{print $1}'` \n"
 
 
 
