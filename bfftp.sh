@@ -7,18 +7,6 @@
 # Author: João Lucas <joaolucas@linuxmail.org>
 
 
-
-function_colors() {
-	escape="\033";
-	white="${escape}[0m";
-	red="${escape}[31m";
-	green="${escape}[32m";
-	yellow="${escape}[33m";
-	blue="${escape}[34m";
-	cyan="${escape}[36m";
-	reset="${escape}[0m";
-}
-
 function_banner(){
 
 cat << EOF
@@ -52,9 +40,20 @@ Author: João Lucas <joaolucas@linuxmail.org>
 
 EOF
 
-exit 1;
+exit 1
 }
 
+
+function_colors() {
+	escape="\033";
+	white="${escape}[0m";
+	red="${escape}[31m";
+	green="${escape}[32m";
+	yellow="${escape}[33m";
+	blue="${escape}[34m";
+	cyan="${escape}[36m";
+	reset="${escape}[0m";
+}
 
 function_bfftp() {
 	testpass=$(ftp -n "$1" << _CONECTION
