@@ -103,7 +103,7 @@ for password in $(cat $wordlist); do
 	if [ $result = 1 ]; then
 		echo -e "${white}[${red} FAILED ${white}] Password incorrect! \n"
 	else
-	echo -e "${white}[${green}   OK   ${white}] Password correct: ${green} $password \n"
+	echo -e "${white}[${green}   OK   ${white}] Password correct    : ${green} $password \n"
 		break
 	fi
 done

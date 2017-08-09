@@ -3,8 +3,8 @@
 Instalation
 =
 	git clone https://github.com/joao-lucas/bfftp
-	cd bfftp && sudo chmod +x bfftp.sh 
-
+	cd bfftp
+	sudo chmod +x bfftp.sh 
 
 
 Usage
