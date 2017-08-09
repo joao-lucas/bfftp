@@ -3,7 +3,7 @@
 
 # Simple script to brute force in protocol ftp
 
-![1](https://github.com/joao-lucas/bfftp/bfftp.png)
+![(https://raw.githubusercontent.com/joao-lucas/bfftp/master/bfftp.png)]
 
 
 Instalation
